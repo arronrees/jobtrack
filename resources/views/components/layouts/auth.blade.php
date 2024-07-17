@@ -18,13 +18,17 @@
 
     <div class="p-4 bg-slate-100 md:grid md:gap-4 md:grid-cols-[auto,3fr] min-h-screen">
 
-        <x-navigation.nav />
+        @auth
 
-        <x-card>
+            <x-navigation.nav />
 
-            {{ $slot }}
+            <x-card>
 
-        </x-card>
+                {{ $slot }}
+
+            </x-card>
+
+        @endauth
 
     </div>
 

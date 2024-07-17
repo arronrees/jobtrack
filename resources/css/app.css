@@ -26,3 +26,11 @@
 #nav.nav--open {
     height: calc(100vh - 2rem);
 }
+
+#profile__nav {
+    display: none;
+}
+
+#profile__nav.profile--open {
+    display: block;
+}
