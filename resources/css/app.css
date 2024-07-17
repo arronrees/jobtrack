@@ -3,3 +3,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#mobile__nav {
+    flex-direction: column;
+    height: 100%;
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    #mobile__nav {
+        display: flex;
+    }
+}
+
+#mobile__nav.nav--open {
+    display: flex;
+}
+
+#nav {
+    height: auto;
+}
+#nav.nav--open {
+    height: calc(100vh - 2rem);
+}

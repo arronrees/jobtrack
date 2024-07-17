@@ -8,7 +8,7 @@ export default {
     theme: {
         extend: {},
         fontFamily: {
-            sans: ["Alegreya Sans"],
+            sans: ["Chivo"],
         },
     },
     plugins: [require("@tailwindcss/forms")],
