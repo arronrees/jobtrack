@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,9 @@ Route::delete('/logout', [SessionController::class, 'destroy']);
 
 Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard');
+});
+
+Route::controller(ClientController::class)->middleware('auth')->group(function () {
+    Route::get('/clients', 'index');
+    Route::get('/clients/{client}', 'show');
 });

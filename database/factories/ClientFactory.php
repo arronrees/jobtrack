@@ -23,6 +23,8 @@ class ClientFactory extends Factory
             'website' => 'https://google.com',
             'notes' => '',
             'contact_name' => fake()->name(),
+            'contact_telephone' => fake()->phoneNumber(),
+            'contact_email' => fake()->email(),
             'logo' => "http://picsum.photos/seed/$rand/600",
         ];
     }
