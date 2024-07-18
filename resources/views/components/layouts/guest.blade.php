@@ -18,6 +18,11 @@
 
     <div class="p-4 bg-slate-100">
 
+        <nav class="flex justify-end p-4 mb-6 gap-4">
+            <a href="/login" class="rounded py-2 px-4 bg-slate-300">Login</a>
+            <a href="/register" class="rounded py-2 px-4 bg-slate-500 text-white">Sign Up</a>
+        </nav>
+
         {{ $slot }}
 
     </div>
