@@ -26,19 +26,21 @@
         </div>
 
         <div class="mt-16">
-            <table class="w-full">
-                <thead>
-                    <tr class="text-left border-b-2 border-slate-200/50 opacity-60">
-                        <th class="pb-1 font-semibold">Job Name</th>
-                        <th class="pb-1 font-semibold">User</th>
-                        <th class="pb-1 font-semibold">Status</th>
-                        <th class="pb-1 font-semibold">Cost</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm">
-
-                </tbody>
-            </table>
+            <x-table.table>
+                <x-table.thead>
+                    <x-table.trh>
+                        <x-table.th>Job Name</x-table.th>
+                        <x-table.th>User</x-table.th>
+                        <x-table.th>Status</x-table.th>
+                        <x-table.th>Cost</x-table.th>
+                    </x-table.trh>
+                </x-table.thead>
+                <x-table.tbody>
+                    <x-table.tr>
+                        <x-table.td>Update banner</x-table.td>
+                    </x-table.tr>
+                </x-table.tbody>
+            </x-table.table>
         </div>
 
     </div>

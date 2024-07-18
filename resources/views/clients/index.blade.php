@@ -10,32 +10,32 @@
         </div>
 
         <div>
-            <table class="w-full">
-                <thead>
-                    <tr class="text-left border-b-2 border-slate-200 opacity-60">
-                        <th class="pb-1 font-semibold">Name</th>
-                        <th class="pb-1 font-semibold">Contact Name</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm">
+            <x-table.table>
+                <x-table.thead>
+                    <x-table.trh>
+                        <x-table.th>Name</x-table.th>
+                        <x-table.th>Contact Name</x-table.th>
+                    </x-table.trh>
+                </x-table.thead>
+                <x-table.tbody>
                     @foreach ($clients as $client)
-                        <tr class="border-b border-slate-100 transition hover:bg-slate-50">
-                            <td class="py-3 font-medium relative">
+                        <x-table.tr>
+                            <x-table.td>
                                 <a class="w-full h-full block absolute top-0 left-0"
                                     href="/clients/{{ $client->id }}"></a>
                                 <span class="flex items-center gap-3">
                                     <img src="{{ $client->logo }}" class="w-6 h-6 rounded-full">
                                     {{ $client->name }}
                                 </span>
-                            </td>
-                            <td class="py-3 font-light opacity-80 relative">
+                            </x-table.td>
+                            <x-table.td class="font-light opacity-80">
                                 <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
                                 {{ $client->contact_name }}
-                            </td>
-                        </tr>
+                            </x-table.td>
+                        </x-table.tr>
                     @endforeach
-                </tbody>
-            </table>
+                </x-table.tbody>
+            </x-table.table>
         </div>
 
     </div>
