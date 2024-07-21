@@ -15,7 +15,6 @@
                     <x-table.trh>
                         <x-table.th>User</x-table.th>
                         <x-table.th>Name</x-table.th>
-                        <x-table.th>Client</x-table.th>
                         <x-table.th>Type</x-table.th>
                         <x-table.th>Status</x-table.th>
                         <x-table.th>Cost</x-table.th>
@@ -27,36 +26,33 @@
                         <x-table.tr>
                             <x-table.td>
                                 <a class="w-full h-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
-                                {{ $job->user->name }}
-                            </x-table.td>
-                            <x-table.td>
-                                <a class="w-full h-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
-                                <span class="flex items-center gap-3">
-                                    {{ $job->name }}
-                                </span>
+                                <img src="{{ $job->user->avatar_url }}" class="w-6 h-6 rounded-full">
                             </x-table.td>
                             <x-table.td>
                                 <a class="w-full h-full block absolute top-0 left-0"
                                     href="/jobs/{{ $job->id }}"></a>
                                 <span class="flex items-center gap-3">
+                                    {{ $job->name }}
+                                </span>
+                                <span class="flex items-center gap-3 text-xs text-slate-500">
                                     {{ $job->client->name }}
                                 </span>
                             </x-table.td>
-                            <x-table.td class="font-light opacity-80">
+                            <x-table.td class="opacity-80">
                                 <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
-                                {{ $job->type }}
+                                <x-ui.pill type="job-type" :job_type="$job->type">{{ $job->type }}</x-ui.pill>
                             </x-table.td>
-                            <x-table.td class="font-light opacity-80">
+                            <x-table.td class="opacity-80">
                                 <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
-                                {{ $job->status }}
+                                <x-ui.pill type="job-status" :job_status="$job->status">{{ $job->status }}</x-ui.pill>
                             </x-table.td>
-                            <x-table.td class="font-light opacity-80">
+                            <x-table.td class="opacity-80 font-semibold">
                                 <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
                                 £{{ number_format($job->cost) }}
                             </x-table.td>
-                            <x-table.td class="font-light opacity-80">
+                            <x-table.td class="opacity-80">
                                 <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
-                                {{ $job->due_date }}
+                                {{ date_format(date_create($job->due_date), 'd M Y') }}
                             </x-table.td>
                         </x-table.tr>
                     @endforeach

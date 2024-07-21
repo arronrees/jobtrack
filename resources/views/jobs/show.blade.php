@@ -16,8 +16,8 @@
             <div>
                 <h1 class="text-2xl font-semibold mb-2">{{ $job->name }}</h1>
                 <div class="flex gap-2 text-sm">
-                    <span class="px-2 py-1 rounded bg-orange-100 text-orange-800">{{ $job->status }}</span>
-                    <span class="px-2 py-1 rounded bg-blue-100 text-blue-800">{{ $job->type }}</span>
+                    <x-ui.pill type="job-status" :job_status="$job->status">{{ $job->status }}</x-ui.pill>
+                    <x-ui.pill type="job-type" :job_type="$job->type">{{ $job->type }}</x-ui.pill>
                 </div>
             </div>
             <div class="flex gap-2 flex-col ml-auto">
@@ -25,30 +25,46 @@
             </div>
         </div>
 
-        <div class="mt-16 text-sm flex flex-col gap-3">
+        <div class="mt-16 text-sm flex flex-col gap-3 font-light">
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Notes</div>
-                <div class="font-light">{{ $job->notes }}</div>
+                <div>{{ $job->notes }}</div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Client</div>
+                <div class=" flex gap-2 items-center">
+                    <img src="{{ $job->client->logo }}" class="w-6 h-6 rounded-full">
+                    <a href="/clients/{{ $job->client->id }}">{{ $job->client->name }}</a>
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">User</div>
+                <div class="flex gap-2 items-center">
+                    <img src="{{ $job->user->avatar_url }}" class="w-6 h-6 rounded-full">
+                    {{ $job->user->name }}
+                </div>
             </div>
             <hr>
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Type</div>
-                <div class="font-light">{{ $job->type }}</div>
+                <div>{{ $job->type }}</div>
             </div>
             <hr>
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Status</div>
-                <div class="font-light">{{ $job->status }}</div>
+                <div>{{ $job->status }}</div>
             </div>
             <hr>
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Cost</div>
-                <div class="font-light">£{{ number_format($job->cost) }}</div>
+                <div>£{{ number_format($job->cost) }}</div>
             </div>
             <hr>
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Due Date</div>
-                <div class="font-light">{{ date_format(date_create($job->due_date), 'd M Y') }}</div>
+                <div>{{ date_format(date_create($job->due_date), 'd M Y') }}</div>
             </div>
         </div>
 

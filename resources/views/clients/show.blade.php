@@ -32,6 +32,7 @@
                     <x-table.trh>
                         <x-table.th>Job Name</x-table.th>
                         <x-table.th>User</x-table.th>
+                        <x-table.th>Type</x-table.th>
                         <x-table.th>Status</x-table.th>
                         <x-table.th>Cost</x-table.th>
                     </x-table.trh>
@@ -39,10 +40,30 @@
                 <x-table.tbody>
                     @foreach ($client->jobs as $job)
                         <x-table.tr>
-                            <x-table.td>{{ $job->name }}</x-table.td>
-                            <x-table.td>{{ $job->user->name }}</x-table.td>
-                            <x-table.td>{{ $job->status }}</x-table.td>
-                            <x-table.td>£{{ number_format($job->cost) }}</x-table.td>
+                            <x-table.td>
+                                <a class="w-full block absolute top-0 left-0 h-full"
+                                    href="/jobs/{{ $job->id }}"></a>
+                                {{ $job->name }}
+                            </x-table.td>
+                            <x-table.td>
+                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <div class="font-light flex gap-2 items-center">
+                                    <img src="{{ $job->user->avatar_url }}" class="w-6 h-6 rounded-full">
+                                    {{ $job->user->name }}
+                                </div>
+                            </x-table.td>
+                            <x-table.td>
+                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-ui.pill type="job-type" :job_type="$job->type">{{ $job->type }}</x-ui.pill>
+                            </x-table.td>
+                            <x-table.td>
+                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-ui.pill type="job-status" :job_status="$job->status">{{ $job->status }}</x-ui.pill>
+                            </x-table.td>
+                            <x-table.td>
+                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                £{{ number_format($job->cost) }}
+                            </x-table.td>
                         </x-table.tr>
                     @endforeach
                 </x-table.tbody>

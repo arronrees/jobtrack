@@ -22,7 +22,9 @@ class RegisterUserController extends Controller
             'password' => ['required']
         ]);
 
-        $user = User::create($validatedAttributes);
+        $rand = rand(0, 100000);
+
+        $user = User::create([...$validatedAttributes, 'avatar_url' => "http://picsum.photos/seed/$rand/600"]);
 
         Auth::login($user);
 

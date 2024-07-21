@@ -9,7 +9,7 @@ class JobController extends Controller
 {
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::with(['client', 'user'])->get();
 
         return view('jobs.index', ['jobs' => $jobs]);
     }
