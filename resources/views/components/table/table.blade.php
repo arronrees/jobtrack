@@ -1,4 +1,4 @@
-<table {{ $attributes->merge(['class' => 'w-full']) }}>
+<table {{ $attributes->merge(['class' => 'w-full text-sm']) }}>
 
     {{ $slot }}
 

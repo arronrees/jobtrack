@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(15)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         Client::factory(100)->create();
 
-        Job::factory(15)->create(new Sequence([
+        Job::factory(300)->create(new Sequence([
             'status' => 'In Progress',
             'type' => 'Website Build',
         ], [

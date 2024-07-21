@@ -26,6 +26,7 @@
         </div>
 
         <div class="mt-16">
+            <h2 class="font-semibold text-lg mb-4 pb-1 border-b-2 border-slate-100">Jobs</h2>
             <x-table.table>
                 <x-table.thead>
                     <x-table.trh>
@@ -36,9 +37,14 @@
                     </x-table.trh>
                 </x-table.thead>
                 <x-table.tbody>
-                    <x-table.tr>
-                        <x-table.td>Update banner</x-table.td>
-                    </x-table.tr>
+                    @foreach ($client->jobs as $job)
+                        <x-table.tr>
+                            <x-table.td>{{ $job->name }}</x-table.td>
+                            <x-table.td>{{ $job->user->name }}</x-table.td>
+                            <x-table.td>{{ $job->status }}</x-table.td>
+                            <x-table.td>£{{ number_format($job->cost) }}</x-table.td>
+                        </x-table.tr>
+                    @endforeach
                 </x-table.tbody>
             </x-table.table>
         </div>

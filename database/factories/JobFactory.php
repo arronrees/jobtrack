@@ -23,10 +23,10 @@ class JobFactory extends Factory
             'type' => 'Website Update',
             'status' => 'In Progress',
             'cost' => rand(50, 10000),
-            'due_date' => fake()->date(),
+            'due_date' => fake()->dateTimeBetween('now', '+2 weeks'),
             'notes' => fake()->paragraph(3),
-            'client_id' => Client::factory(),
-            'user_id' => User::factory()
+            'client_id' => rand(1, 100), // assuming 100 made in client seeder and not using uuids
+            'user_id' => rand(1, 15) // assuming 15 made in user seeder and not using uuids
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,9 @@ Route::middleware('auth')->group(function () {
 Route::controller(ClientController::class)->middleware('auth')->group(function () {
     Route::get('/clients', 'index');
     Route::get('/clients/{client}', 'show');
+});
+
+Route::controller(JobController::class)->middleware('auth')->group(function () {
+    Route::get('/jobs', 'index');
+    Route::get('/jobs/{job}', 'show');
 });
