@@ -26,6 +26,21 @@
                     <x-forms.input-text type="password" name="password" id="password" />
                 </x-forms.row>
 
+                @error('email')
+                    <x-forms.row>
+                        <x-forms.error>
+                            {{ $message }}
+                        </x-forms.error>
+                    </x-forms.row>
+                @enderror
+                @error('password')
+                    <x-forms.row>
+                        <x-forms.error>
+                            {{ $message }}
+                        </x-forms.error>
+                    </x-forms.row>
+                @enderror
+
                 <x-forms.row>
                     <x-forms.button text="Log In" />
                 </x-forms.row>
