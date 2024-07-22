@@ -1,4 +1,5 @@
-<nav class="flex flex-col mb-4 md:mb-0 md:max-w-64" id="nav">
+<div class="hidden md:block" id="nav__placeholder"></div>
+<nav class="flex flex-col mb-4 md:mb-0 md:fixed md:top-4 md:left-4" id="nav">
     <div class="flex gap-3 mb-4 pb-4 border-b border-slate-200 md:pr-16">
         <svg class="w-8 h-auto" id="logo-72" width="52" height="44" viewBox="0 0 53 44" fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +85,7 @@
                 </div>
                 <div class="text-sm">
                     <p class="font-semibold">Arron</p>
-                    <p>arron@arronrees.co.uk</p>
+                    <p class="text-xs">arron@arronrees.co.uk</p>
                 </div>
             </div>
         </div>

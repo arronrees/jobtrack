@@ -27,6 +27,16 @@
     height: calc(100vh - 2rem);
 }
 
+@media only screen and (min-width: 768px) {
+    #nav {
+        height: calc(100vh - 2rem);
+    }
+
+    #nav__placeholder {
+        width: 14rem;
+    }
+}
+
 #profile__nav {
     display: none;
 }
