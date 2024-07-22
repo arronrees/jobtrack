@@ -14,7 +14,9 @@
                 <x-table.thead>
                     <x-table.trh>
                         <x-table.th>Name</x-table.th>
-                        <x-table.th>Contact Name</x-table.th>
+                        <x-table.th>Contact</x-table.th>
+                        <x-table.th>Email</x-table.th>
+                        <x-table.th>Telephone</x-table.th>
                     </x-table.trh>
                 </x-table.thead>
                 <x-table.tbody>
@@ -31,6 +33,14 @@
                             <x-table.td class="font-light opacity-80">
                                 <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
                                 {{ $client->contact_name }}
+                            </x-table.td>
+                            <x-table.td class="font-light opacity-60">
+                                <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
+                                {{ $client->contact_email }}
+                            </x-table.td>
+                            <x-table.td class="font-light opacity-60">
+                                <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
+                                {{ $client->contact_telephone }}
                             </x-table.td>
                         </x-table.tr>
                     @endforeach
