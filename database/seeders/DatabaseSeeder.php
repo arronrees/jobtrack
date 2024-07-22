@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
+use App\Models\Invoice;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -34,6 +35,14 @@ class DatabaseSeeder extends Seeder
         ], [
             'status' => 'To Start',
             'type' => 'Logo Design',
+        ]));
+
+        Invoice::factory(400)->create(new Sequence([
+            'status' => 'Invoiced',
+        ], [
+            'status' => 'Ready To Invoice',
+        ], [
+            'status' => 'Paid',
         ]));
     }
 }
