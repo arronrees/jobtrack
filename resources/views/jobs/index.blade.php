@@ -33,7 +33,7 @@
                                 <span class="flex items-center gap-3">
                                     {{ $job->name }}
                                 </span>
-                                <span class="flex items-center gap-3 text-xs text-slate-500">
+                                <span class="flex items-center gap-3 text-xs  opacity-60">
                                     {{ $job->client->name }}
                                 </span>
                             </x-table.td>
@@ -49,7 +49,7 @@
                                 <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 £{{ number_format($job->cost) }}
                             </x-table.td>
-                            <x-table.td class="opacity-80">
+                            <x-table.td class="opacity-80 text-xs">
                                 <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 {{ date_format(date_create($job->due_date), 'd M Y') }}
                             </x-table.td>

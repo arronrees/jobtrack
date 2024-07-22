@@ -48,7 +48,7 @@
                 </x-navigation.nav-link>
             </li>
             <li>
-                <x-navigation.nav-link href="/billing" text="Billing" :active="request()->is('/billing')">
+                <x-navigation.nav-link href="/invoices" text="Billing" :active="request()->is('/invoices')">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                         <path d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z" />
                         <path fill-rule="evenodd"

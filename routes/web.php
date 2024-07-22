@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
@@ -32,4 +33,9 @@ Route::controller(ClientController::class)->middleware('auth')->group(function (
 Route::controller(JobController::class)->middleware('auth')->group(function () {
     Route::get('/jobs', 'index');
     Route::get('/jobs/{job}', 'show');
+});
+
+Route::controller(InvoiceController::class)->middleware('auth')->group(function () {
+    Route::get('/invoices', 'index');
+    Route::get('/invoices/{invoice}', 'show');
 });
