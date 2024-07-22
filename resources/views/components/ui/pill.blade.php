@@ -1,4 +1,4 @@
-@props(['type' => '', 'job_status' => '', 'job_type' => ''])
+@props(['type' => '', 'job_status' => '', 'job_type' => '', 'invoice_status' => ''])
 
 @php
     $classes = '';
@@ -24,6 +24,16 @@
                 $classes .= 'bg-indigo-100 text-indigo-800';
             } elseif ($job_type === 'Website Update') {
                 $classes .= 'bg-teal-100 text-teal-800';
+            }
+            break;
+
+        case 'invoice-status':
+            if ($invoice_status === 'Ready To Invoice') {
+                $classes .= 'bg-amber-100 text-amber-800';
+            } elseif ($invoice_status === 'Invoiced') {
+                $classes .= 'bg-indigo-100 text-indigo-800';
+            } elseif ($invoice_status === 'Paid') {
+                $classes .= 'bg-green-100 text-green-800';
             }
             break;
 

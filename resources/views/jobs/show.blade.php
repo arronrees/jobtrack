@@ -73,12 +73,34 @@
             <x-table.table>
                 <x-table.thead>
                     <x-table.trh>
-                        <x-table.th>Date</x-table.th>
+                        <x-table.th>Due Date</x-table.th>
                         <x-table.th>Name</x-table.th>
-                        <x-table.th>Notes</x-table.th>
+                        <x-table.th>Status</x-table.th>
                         <x-table.th>Amount</x-table.th>
                     </x-table.trh>
                 </x-table.thead>
+                <x-table.tbody>
+                    @foreach ($job->invoices as $invoice)
+                        <x-table.tr>
+                            <x-table.td>
+                                <x-table.row-link href="/invoices/{{ $invoice->id }}" />
+                                {{ date_format(date_create($invoice->due_date), 'd M Y') }}
+                            </x-table.td>
+                            <x-table.td>
+                                <x-table.row-link href="/invoices/{{ $invoice->id }}" />
+                                {{ $invoice->name }}
+                            </x-table.td>
+                            <x-table.td>
+                                <x-table.row-link href="/invoices/{{ $invoice->id }}" />
+                                <x-ui.pill type="invoice-status" :invoice_status="$invoice->status">{{ $invoice->status }}</x-ui.pill>
+                            </x-table.td>
+                            <x-table.td>
+                                <x-table.row-link href="/invoices/{{ $invoice->id }}" />
+                                £{{ number_format($invoice->amount) }}
+                            </x-table.td>
+                        </x-table.tr>
+                    @endforeach
+                </x-table.tbody>
             </x-table.table>
         </div>
 
