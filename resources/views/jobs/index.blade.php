@@ -25,12 +25,11 @@
                     @foreach ($jobs as $job)
                         <x-table.tr>
                             <x-table.td>
-                                <a class="w-full h-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 <img src="{{ $job->user->avatar_url }}" class="w-6 h-6 rounded-full">
                             </x-table.td>
                             <x-table.td>
-                                <a class="w-full h-full block absolute top-0 left-0"
-                                    href="/jobs/{{ $job->id }}"></a>
+                                <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 <span class="flex items-center gap-3">
                                     {{ $job->name }}
                                 </span>
@@ -39,19 +38,19 @@
                                 </span>
                             </x-table.td>
                             <x-table.td class="opacity-80">
-                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 <x-ui.pill type="job-type" :job_type="$job->type">{{ $job->type }}</x-ui.pill>
                             </x-table.td>
                             <x-table.td class="opacity-80">
-                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 <x-ui.pill type="job-status" :job_status="$job->status">{{ $job->status }}</x-ui.pill>
                             </x-table.td>
                             <x-table.td class="opacity-80 font-semibold">
-                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 £{{ number_format($job->cost) }}
                             </x-table.td>
                             <x-table.td class="opacity-80">
-                                <a class="w-full block absolute top-0 left-0" href="/jobs/{{ $job->id }}"></a>
+                                <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 {{ date_format(date_create($job->due_date), 'd M Y') }}
                             </x-table.td>
                         </x-table.tr>

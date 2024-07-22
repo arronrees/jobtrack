@@ -23,23 +23,22 @@
                     @foreach ($clients as $client)
                         <x-table.tr>
                             <x-table.td>
-                                <a class="w-full h-full block absolute top-0 left-0"
-                                    href="/clients/{{ $client->id }}"></a>
+                                <x-table.row-link href="/clients/{{ $client->id }}" />
                                 <span class="flex items-center gap-3">
                                     <img src="{{ $client->logo }}" class="w-6 h-6 rounded-full">
                                     {{ $client->name }}
                                 </span>
                             </x-table.td>
                             <x-table.td class="font-light opacity-80">
-                                <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
+                                <x-table.row-link href="/clients/{{ $client->id }}" />
                                 {{ $client->contact_name }}
                             </x-table.td>
                             <x-table.td class="font-light opacity-60">
-                                <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
+                                <x-table.row-link href="/clients/{{ $client->id }}" />
                                 {{ $client->contact_email }}
                             </x-table.td>
                             <x-table.td class="font-light opacity-60">
-                                <a class="w-full block absolute top-0 left-0" href="/clients/{{ $client->id }}"></a>
+                                <x-table.row-link href="/clients/{{ $client->id }}" />
                                 {{ $client->contact_telephone }}
                             </x-table.td>
                         </x-table.tr>
