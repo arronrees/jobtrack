@@ -1,3 +1,3 @@
 @props(['for', 'text'])
 
-<label for="{{ $for }}" class="font-medium text-sm">{{ $text }}</label>
+<label for="{{ $for }}" {{ $attributes->merge(['class' => 'font-medium text-sm']) }}>{{ $text }}</label>

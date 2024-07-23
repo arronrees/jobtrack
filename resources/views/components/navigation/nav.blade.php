@@ -81,11 +81,11 @@
             </div>
             <div class="flex gap-2 items-center cursor-pointer" id="profile__btn">
                 <div class="rounded-lg border border-slate-400 w-12 h-12 flex items-center justify-center font-bold">
-                    A
+                    {{ substr(Auth::user()->name, 0, 1) }}
                 </div>
                 <div class="text-sm">
-                    <p class="font-semibold">Arron</p>
-                    <p class="text-xs">arron@arronrees.co.uk</p>
+                    <p class="font-semibold">{{ Auth::user()->name }}</p>
+                    <p class="text-xs">{{ Auth::user()->email }}</p>
                 </div>
             </div>
         </div>
