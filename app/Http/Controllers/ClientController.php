@@ -9,7 +9,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::paginate(40);
 
         return view('clients.index', ['clients' => $clients]);
     }

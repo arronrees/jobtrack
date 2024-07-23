@@ -11,7 +11,7 @@ class InvoiceController extends Controller
     {
         $invoices = Invoice::with(['job' => function ($query) {
             $query->with(['client']);
-        }])->get();
+        }])->paginate(40);
 
         return view('invoices.index', ['invoices' => $invoices]);
     }

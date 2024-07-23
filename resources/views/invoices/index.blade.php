@@ -63,6 +63,10 @@
             </x-table.table>
         </div>
 
+        <div class="mt-4">
+            {{ $invoices->links() }}
+        </div>
+
     </div>
 
 </x-layouts.auth>

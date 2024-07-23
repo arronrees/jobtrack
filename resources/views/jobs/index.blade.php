@@ -58,6 +58,10 @@
             </x-table.table>
         </div>
 
+        <div class="mt-4">
+            {{ $jobs->links() }}
+        </div>
+
     </div>
 
 </x-layouts.auth>
