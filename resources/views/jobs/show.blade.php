@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="flex gap-2 flex-col ml-auto">
-                <a href="/jobs/{{ $job->id }}/edit" class="rounded py-2 px-4 bg-slate-300">Edit</a>
+                <a href="/jobs/{{ $job->id }}/edit" class="btn--edit">Edit</a>
             </div>
         </div>
 

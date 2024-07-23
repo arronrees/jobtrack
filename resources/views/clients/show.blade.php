@@ -21,7 +21,7 @@
                 <p class="opacity-70">32 London Bridge Street, London, SW19</p>
             </div>
             <div class="flex gap-2 flex-col ml-auto">
-                <a href="/clients/{{ $client->id }}/edit" class="rounded py-2 px-4 bg-slate-300">Edit</a>
+                <a href="/clients/{{ $client->id }}/edit" class="btn--edit">Edit</a>
             </div>
         </div>
 

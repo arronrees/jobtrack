@@ -4,8 +4,7 @@
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
             <h1 class="text-xl font-semibold">Clients</h1>
-            <a href="/clients/create"
-                class="rounded py-2 px-4 bg-slate-600 hover:bg-slate-700 border transition text-white shadow">Add
+            <a href="/clients/create" class="btn--add">Add
                 Client</a>
         </div>
 

@@ -4,8 +4,7 @@
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
             <h1 class="text-xl font-semibold">Invoices</h1>
-            <a href="/invoices/create"
-                class="rounded py-2 px-4 bg-slate-600 hover:bg-slate-700 border transition text-white shadow">Add
+            <a href="/invoices/create" class="btn--add">Add
                 Invoice</a>
         </div>
 
