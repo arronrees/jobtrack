@@ -49,26 +49,26 @@
                     <div>
                         <x-forms.label class="opacity-60" for="password" text="Password" />
                     </div>
-                    <x-forms.row>
-                        <x-forms.input-text name="password" type="password" id="password" :required="true" />
-                        @error('password')
-                            <x-forms.error>
-                                {{ $message }}
-                            </x-forms.error>
-                        @enderror
-                    </x-forms.row>
-                    <div>
-                        <x-forms.label class="opacity-60" for="password_confirmation" text="Password confirmation" />
+                    <div class="flex flex-col gap-2">
+                        <x-forms.row>
+                            <x-forms.input-text name="password" type="password" id="password" :required="true"
+                                placeholder="Password" />
+                            @error('password')
+                                <x-forms.error>
+                                    {{ $message }}
+                                </x-forms.error>
+                            @enderror
+                        </x-forms.row>
+                        <x-forms.row>
+                            <x-forms.input-text name="password_confirmation" type="password" id="password_confirmation"
+                                :required="true" placeholder="Password confirmation" />
+                            @error('password_confirmation')
+                                <x-forms.error>
+                                    {{ $message }}
+                                </x-forms.error>
+                            @enderror
+                        </x-forms.row>
                     </div>
-                    <x-forms.row>
-                        <x-forms.input-text name="password_confirmation" type="password" id="password_confirmation"
-                            :required="true" />
-                        @error('password_confirmation')
-                            <x-forms.error>
-                                {{ $message }}
-                            </x-forms.error>
-                        @enderror
-                    </x-forms.row>
                 </div>
 
                 <hr>
