@@ -18,7 +18,7 @@
 
         <div>
 
-            <form method="POST" action="/clients/create" class="flex flex-col gap-6">
+            <form method="POST" action="/clients" class="flex flex-col gap-6">
                 @csrf
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('contact_name');
             $table->text('contact_telephone');
             $table->text('contact_email');
-            $table->text('notes');
-            $table->string('website');
-            $table->string('logo');
+            $table->text('notes')->nullable();
+            $table->string('website')->nullable();
+            $table->string('logo')->nullable();
         });
     }
 

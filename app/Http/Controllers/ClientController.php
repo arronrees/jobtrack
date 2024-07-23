@@ -27,4 +27,21 @@ class ClientController extends Controller
     {
         return view('clients.create');
     }
+
+    public function store(Request $request)
+    {
+        $validatedAttributes = $request->validate([
+            'name' => ['required', 'max:255'],
+            'contact_name' => ['required', 'max:255'],
+            'contact_telephone' => ['required', 'max:255'],
+            'contact_email' => ['required', 'email', 'max:255'],
+            'notes' => ['nullable'],
+            'website' => ['nullable', 'url'],
+            'logo' => ['nullable'],
+        ]);
+
+        $client = Client::create($validatedAttributes);
+
+        return redirect("/clients/{$client->id}");
+    }
 }

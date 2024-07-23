@@ -27,6 +27,7 @@ Route::view('/dashboard', 'dashboard')->middleware('auth');
 Route::controller(ClientController::class)->middleware('auth')->group(function () {
     Route::get('/clients', 'index');
     Route::get('/clients/create', 'create');
+    Route::post('/clients', 'store');
     Route::get('/clients/{client}', 'show');
 });
 
