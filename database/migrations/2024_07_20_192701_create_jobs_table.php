@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('status');
             $table->float('cost');
-            $table->date('due_date');
-            $table->text('notes');
+            $table->date('due_date')->nullable();
+            $table->text('notes')->nullable();
             $table->foreignIdFor(Client::class);
             $table->foreignIdFor(User::class);
         });

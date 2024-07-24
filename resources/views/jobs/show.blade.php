@@ -27,11 +27,6 @@
 
         <div class="mt-16 text-sm flex flex-col gap-3 font-light">
             <div class="grid grid-cols-[10rem,1fr]">
-                <div class="opacity-80 font-medium">Notes</div>
-                <div>{{ $job->notes }}</div>
-            </div>
-            <hr>
-            <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Client</div>
                 <div class=" flex gap-2 items-center">
                     <img src="{{ $job->client->logo }}" class="w-6 h-6 rounded-full">
@@ -65,6 +60,11 @@
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Due Date</div>
                 <div>{{ date_format(date_create($job->due_date), 'd M Y') }}</div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Notes</div>
+                <div>{{ $job->notes }}</div>
             </div>
         </div>
 

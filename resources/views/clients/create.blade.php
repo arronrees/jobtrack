@@ -39,7 +39,7 @@
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
-                        <x-forms.label class="opacity-60" for="name" text="Client Contact" />
+                        <x-forms.label class="opacity-60" for="contact_name" text="Client Contact" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <x-forms.row>
