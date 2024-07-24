@@ -47,7 +47,7 @@
                             <x-table.td>
                                 <x-table.row-link href="/jobs/{{ $job->id }}" />
                                 <div class="font-light flex gap-2 items-center">
-                                    <img src="{{ $job->user->avatar_url }}" class="w-6 h-6 rounded-full">
+                                    <img src="{{ $job->user->avatar_url }}" class="w-6 h-6 rounded">
                                     {{ $job->user->name }}
                                 </div>
                             </x-table.td>

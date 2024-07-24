@@ -1,5 +1,7 @@
-<table {{ $attributes->merge(['class' => 'w-full text-sm']) }}>
+<div class="overflow-x-auto">
+    <table {{ $attributes->merge(['class' => 'w-full text-sm']) }}>
 
-    {{ $slot }}
+        {{ $slot }}
 
-</table>
+    </table>
+</div>

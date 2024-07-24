@@ -26,19 +26,20 @@
 
         <div class="mt-16 text-sm flex flex-col gap-3 font-light">
             <div class="grid grid-cols-[10rem,1fr]">
-                <div class="opacity-80 font-medium">Notes</div>
-                <div>{{ $invoice->notes }}</div>
-            </div>
-            <hr>
-            <div class="grid grid-cols-[10rem,1fr]">
-                <div class="opacity-80 font-medium">Private Notes</div>
-                <div>{{ $invoice->private_notes }}</div>
+                <div class="opacity-80 font-medium">Job</div>
+                <div class="flex gap-2 items-center">
+                    <a href="/jobs/{{ $invoice->job->id }}" class="flex gap-4 items-center">
+                        <span>{{ $invoice->job->name }}</span>
+                        <x-ui.pill type="job-status"
+                            job_status="{{ $invoice->job->status }}">{{ $invoice->job->status }}</x-ui.pill>
+                    </a>
+                </div>
             </div>
             <hr>
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Client</div>
                 <div class="flex gap-2 items-center">
-                    <img src="{{ $invoice->job->client->logo }}" class="w-6 h-6 rounded-full">
+                    <img src="{{ $invoice->job->client->logo }}" class="w-6 h-6 rounded">
                     <a href="/clients/{{ $invoice->job->client->id }}">{{ $invoice->job->client->name }}</a>
                 </div>
             </div>
@@ -56,6 +57,16 @@
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Due Date</div>
                 <div>{{ date_format(date_create($invoice->due_date), 'd M Y') }}</div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Notes</div>
+                <div>{{ $invoice->notes }}</div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Private Notes</div>
+                <div>{{ $invoice->private_notes }}</div>
             </div>
         </div>
 
