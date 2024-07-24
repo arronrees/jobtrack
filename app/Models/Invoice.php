@@ -9,7 +9,7 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'status', 'amount', 'invoice_date', 'due_date', 'notes', 'private_notes'];
+    protected $fillable = ['name', 'status', 'amount', 'invoice_date', 'due_date', 'notes', 'private_notes', 'job_id'];
 
     public function job()
     {
