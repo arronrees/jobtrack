@@ -32,6 +32,15 @@ class DatabaseSeeder extends Seeder
         ], [
             'status' => 'Complete',
             'type' => 'Website Update',
+            'archived' => true
+        ], [
+            'status' => 'Complete',
+            'type' => 'Website Build',
+            'archived' => true
+        ], [
+            'status' => 'Complete',
+            'type' => 'Graphic Design',
+            'archived' => true
         ], [
             'status' => 'To Start',
             'type' => 'Logo Design',

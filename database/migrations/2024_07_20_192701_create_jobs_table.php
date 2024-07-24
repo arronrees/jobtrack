@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('cost');
             $table->date('due_date')->nullable();
             $table->text('notes')->nullable();
+            $table->boolean('archived')->default(false);
             $table->foreignIdFor(Client::class);
             $table->foreignIdFor(User::class);
         });

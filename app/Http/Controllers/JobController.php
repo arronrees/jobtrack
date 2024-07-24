@@ -14,7 +14,7 @@ class JobController extends Controller
 {
     public function index()
     {
-        $jobs = Job::with(['client', 'user'])->paginate(40);
+        $jobs = Job::with(['client', 'user'])->where('archived', '!=', true)->paginate(40);
 
         return view('jobs.index', ['jobs' => $jobs]);
     }
