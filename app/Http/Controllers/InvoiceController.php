@@ -22,7 +22,7 @@ class InvoiceController extends Controller
             $invoices->where('status', '=', $status);
         }
 
-        $invoices = $invoices->where('archived', '!=', true)->paginate(40);
+        $invoices = $invoices->where('archived', '!=', true)->paginate(40)->appends($request->all());
 
         $statuses = InvoiceStatus::cases();
 
@@ -41,7 +41,7 @@ class InvoiceController extends Controller
             $invoices->where('status', '=', $status);
         }
 
-        $invoices = $invoices->where('archived', '=', true)->paginate(40);
+        $invoices = $invoices->where('archived', '=', true)->paginate(40)->appends($request->all());
 
         $statuses = InvoiceStatus::cases();
 

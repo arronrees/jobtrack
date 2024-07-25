@@ -26,7 +26,7 @@ class JobController extends Controller
             $jobs->where('type', '=', $type);
         }
 
-        $jobs = $jobs->where('archived', '!=', true)->paginate(40);
+        $jobs = $jobs->where('archived', '!=', true)->paginate(40)->appends($request->all());
 
         $types = JobType::cases();
         $statuses = JobStatus::cases();
@@ -54,7 +54,7 @@ class JobController extends Controller
             $jobs->where('type', '=', $type);
         }
 
-        $jobs = $jobs->where('archived', '=', true)->paginate(40);
+        $jobs = $jobs->where('archived', '=', true)->paginate(40)->appends($request->all());
 
         $types = JobType::cases();
         $statuses = JobStatus::cases();
