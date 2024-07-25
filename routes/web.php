@@ -41,6 +41,7 @@ Route::controller(JobController::class)->middleware('auth')->group(function () {
 
 Route::controller(InvoiceController::class)->middleware('auth')->group(function () {
     Route::get('/invoices', 'index');
+    Route::get('/invoices/archive', 'archive');
     Route::get('/invoices/create', 'create');
     Route::post('/invoices', 'store');
     Route::get('/invoices/{invoice}', 'show');

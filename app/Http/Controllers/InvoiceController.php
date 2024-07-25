@@ -10,13 +10,42 @@ use Illuminate\Validation\Rule;
 
 class InvoiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $invoices = Invoice::with(['job' => function ($query) {
+        $invoices = Invoice::query()->with(['job' => function ($query) {
             $query->with(['client']);
-        }])->where('status', '=', 'Ready To Invoice')->paginate(40);
+        }]);
 
-        return view('invoices.index', ['invoices' => $invoices]);
+        $status = $request->query('status');
+
+        if ($status) {
+            $invoices->where('status', '=', $status);
+        }
+
+        $invoices = $invoices->where('archived', '!=', true)->paginate(40);
+
+        $statuses = InvoiceStatus::cases();
+
+        return view('invoices.index', ['invoices' => $invoices, 'statuses' => $statuses, 'current_status' => $status]);
+    }
+
+    public function archive(Request $request)
+    {
+        $invoices = Invoice::query()->with(['job' => function ($query) {
+            $query->with(['client']);
+        }]);
+
+        $status = $request->query('status');
+
+        if ($status) {
+            $invoices->where('status', '=', $status);
+        }
+
+        $invoices = $invoices->where('archived', '=', true)->paginate(40);
+
+        $statuses = InvoiceStatus::cases();
+
+        return view('invoices.index', ['invoices' => $invoices, 'statuses' => $statuses, 'current_status' => $status]);
     }
 
     public function show(Invoice $invoice)

@@ -4,8 +4,29 @@
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
             <h1 class="text-xl font-semibold">Invoices</h1>
+            @if (request()->is('invoices/archive'))
+                <a href="/invoices" class="btn--outline ml-auto">Current Invoices</a>
+            @else
+                <a href="/invoices/archive" class="btn--outline ml-auto">Archived Invoices</a>
+            @endif
             <a href="/invoices/create" class="btn--add">Add
                 Invoice</a>
+        </div>
+
+        <div class="flex gap-4 mb-6">
+            <div class="flex flex-col gap-2">
+                <p class="text-xs font-medium opacity-60">Filter By Status</p>
+                <div class="flex gap-2 flex-wrap">
+                    @foreach ($statuses as $status)
+                        <a href="{{ url()->current() }}?status={{ $status->value }}"
+                            class="text-xs rounded-full px-2 py-1 border border-slate-200 transition hover:bg-slate-200 {{ $current_status === $status->value ? 'bg-slate-200' : '' }}">{{ $status->value }}</a>
+                    @endforeach
+                </div>
+                <div>
+                    <a href="{{ url()->current() }}?status="
+                        class="text-xs opacity-50 transition hover:opacity-70 border-b border-transparent hover:border-slate-500">Clear</a>
+                </div>
+            </div>
         </div>
 
         <div>

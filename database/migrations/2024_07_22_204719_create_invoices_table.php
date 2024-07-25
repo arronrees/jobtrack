@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('due_date')->nullable();
             $table->text('notes')->nullable();
             $table->text('private_notes')->nullable();
+            $table->boolean('archived')->default(false);
             $table->foreignIdFor(Job::class);
         });
     }

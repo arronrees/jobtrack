@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
         ], [
             'status' => 'Complete',
             'type' => 'Website Update',
-            'archived' => true
         ], [
             'status' => 'Complete',
             'type' => 'Website Build',
@@ -49,9 +48,13 @@ class DatabaseSeeder extends Seeder
         Invoice::factory(400)->create(new Sequence([
             'status' => 'Invoiced',
         ], [
+            'status' => 'Invoiced',
+            'archived' => true
+        ], [
             'status' => 'Ready To Invoice',
         ], [
             'status' => 'Paid',
+            'archived' => true
         ]));
     }
 }
