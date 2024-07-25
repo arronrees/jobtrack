@@ -12,11 +12,60 @@ use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::with(['client', 'user'])->where('archived', '!=', true)->paginate(40);
+        $jobs = Job::query()->with(['client', 'user']);
 
-        return view('jobs.index', ['jobs' => $jobs]);
+        $status = $request->query('status');
+        $type = $request->query('type');
+
+        if ($status) {
+            $jobs->where('status', '=', $status);
+        }
+        if ($type) {
+            $jobs->where('type', '=', $type);
+        }
+
+        $jobs = $jobs->where('archived', '!=', true)->paginate(40);
+
+        $types = JobType::cases();
+        $statuses = JobStatus::cases();
+
+        return view('jobs.index', [
+            'jobs' => $jobs,
+            'types' => $types,
+            'statuses' => $statuses,
+            'current_status' => $status,
+            'current_type' => $type,
+        ]);
+    }
+
+    public function archive(Request $request)
+    {
+        $jobs = Job::query()->with(['client', 'user']);
+
+        $status = $request->query('status');
+        $type = $request->query('type');
+
+        if ($status) {
+            $jobs->where('status', '=', $status);
+        }
+        if ($type) {
+            $jobs->where('type', '=', $type);
+        }
+
+        $jobs = $jobs->where('archived', '=', true)->paginate(40);
+
+        $types = JobType::cases();
+        $statuses = JobStatus::cases();
+
+        return view('jobs.index', [
+            'jobs' => $jobs,
+            'types' => $types,
+            'statuses' => $statuses,
+            'current_status' => $status,
+            'current_type' => $type,
+        ]);
     }
 
     public function show(Job $job)

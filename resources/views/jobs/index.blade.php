@@ -4,8 +4,42 @@
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
             <h1 class="text-xl font-semibold">Jobs</h1>
+            @if (request()->is('jobs/archive'))
+                <a href="/jobs" class="btn--outline ml-auto">Current Jobs</a>
+            @else
+                <a href="/jobs/archive" class="btn--outline ml-auto">Archived Jobs</a>
+            @endif
             <a href="/jobs/create" class="btn--add">Add
                 Job</a>
+        </div>
+
+        <div class="flex gap-4 mb-6">
+            <div class="flex flex-col gap-2">
+                <p class="text-xs font-medium opacity-60">Filter By Status</p>
+                <div class="flex gap-2 flex-wrap">
+                    @foreach ($statuses as $status)
+                        <a href="{{ url()->current() }}?status={{ $status->value }}&type={{ $current_type }}"
+                            class="text-xs rounded-full px-2 py-1 border border-slate-200 transition hover:bg-slate-200 {{ $current_status === $status->value ? 'bg-slate-200' : '' }}">{{ $status->value }}</a>
+                    @endforeach
+                </div>
+                <div>
+                    <a href="{{ url()->current() }}?status=&type={{ $current_type }}"
+                        class="text-xs opacity-50 transition hover:opacity-70 border-b border-transparent hover:border-slate-500">Clear</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p class="text-xs font-medium opacity-60">Filter By Type</p>
+                <div class="flex gap-2 flex-wrap">
+                    @foreach ($types as $type)
+                        <a href="{{ url()->current() }}?status={{ $current_status }}&type={{ $type->value }}"
+                            class="text-xs rounded-full px-2 py-1 border border-slate-200 transition hover:bg-slate-200 {{ $current_type === $type->value ? 'bg-slate-200' : '' }}">{{ $type->value }}</a>
+                    @endforeach
+                </div>
+                <div>
+                    <a href="{{ url()->current() }}?status={{ $current_status }}&type="
+                        class="text-xs opacity-50 transition hover:opacity-70 border-b border-transparent hover:border-slate-500">Clear</a>
+                </div>
+            </div>
         </div>
 
         <div>

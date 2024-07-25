@@ -33,6 +33,7 @@ Route::controller(ClientController::class)->middleware('auth')->group(function (
 
 Route::controller(JobController::class)->middleware('auth')->group(function () {
     Route::get('/jobs', 'index');
+    Route::get('/jobs/archive', 'archive');
     Route::get('/jobs/create', 'create');
     Route::post('/jobs', 'store');
     Route::get('/jobs/{job}', 'show');
