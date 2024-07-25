@@ -58,7 +58,7 @@
                         <x-forms.label class="opacity-60" for="job_id" text="Job" />
                     </div>
                     <x-forms.row>
-                        <x-forms.select name="job_id" id="job_id" :required="true" :value="old('job_id')">
+                        <x-forms.select name="job_id" id="job_id" :required="true">
                             <option disabled selected value="">Select Job</option>
                             @foreach ($jobs as $job)
                                 <option value="{{ $job->id }}" {{ $job->id == old('job_id') ? 'selected' : '' }}>
@@ -77,10 +77,10 @@
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
-                        <x-forms.label class="opacity-60" for="status" text="Status" :value="old('status')" />
+                        <x-forms.label class="opacity-60" for="status" text="Status" />
                     </div>
                     <x-forms.row>
-                        <x-forms.select name="status" id="status" :required="true" :value="old('status')">
+                        <x-forms.select name="status" id="status" :required="true">
                             <option disabled selected value="">Select Invoice Status</option>
                             @foreach ($statuses as $status)
                                 <option value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>

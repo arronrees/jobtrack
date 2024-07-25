@@ -28,15 +28,15 @@
                                     {{ $client->name }}
                                 </span>
                             </x-table.td>
-                            <x-table.td class="font-light opacity-80">
+                            <x-table.td class="opacity-80">
                                 <x-table.row-link href="/clients/{{ $client->id }}" />
                                 {{ $client->contact_name }}
                             </x-table.td>
-                            <x-table.td class="font-light opacity-60">
+                            <x-table.td class="opacity-60">
                                 <x-table.row-link href="/clients/{{ $client->id }}" />
                                 {{ $client->contact_email }}
                             </x-table.td>
-                            <x-table.td class="font-light opacity-60">
+                            <x-table.td class="opacity-60">
                                 <x-table.row-link href="/clients/{{ $client->id }}" />
                                 {{ $client->contact_telephone }}
                             </x-table.td>

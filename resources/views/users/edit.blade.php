@@ -3,18 +3,28 @@
     <div class="p-6">
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
-            <h1 class="text-xl font-semibold">Profile</h1>
+            <a href="/users" class="p-2 flex items-center gap-2 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4 stroke-black">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+                Users
+            </a>
+        </div>
+
+        <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
+            <h1 class="text-xl font-semibold">{{ $user->name }}</h1>
         </div>
 
         <section>
 
-            <form method="POST" action="/profile" class="flex flex-col gap-6">
+            <form method="POST" action="/users/{{ $user->id }}" class="flex flex-col gap-6">
                 @csrf
                 @method('PUT')
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
-                        <x-forms.label class="opacity-60" for="name" text="Your name" />
+                        <x-forms.label class="opacity-60" for="name" text="Name" />
                     </div>
                     <x-forms.row>
                         <x-forms.input-text name="name" id="name" :required="true" :value="$user->name" />
@@ -47,7 +57,29 @@
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
-                        <x-forms.label class="opacity-60" for="password" text="Password" />
+                        <x-forms.label class="opacity-60" for="role" text="Role" />
+                    </div>
+                    <x-forms.row>
+                        <x-forms.select name="role" id="role" :required="true">
+                            <option disabled selected value="">Select role</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->value }}" {{ $user->role == $role->value ? 'selected' : '' }}>
+                                    {{ $role->value }}</option>
+                            @endforeach
+                        </x-forms.select>
+                        @error('status')
+                            <x-forms.error>
+                                {{ $message }}
+                            </x-forms.error>
+                        @enderror
+                    </x-forms.row>
+                </div>
+
+                <hr>
+
+                <div class="grid md:grid-cols-[1fr,1fr] gap-2">
+                    <div>
+                        <x-forms.label class="opacity-60" for="password" text="Set New Password" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <x-forms.row>
