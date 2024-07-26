@@ -68,34 +68,23 @@
             </li>
         </ul>
         <div class="mt-auto relative">
-            <div class="p-3 bg-slate-200 rounded absolute w-full text-sm" style="bottom: calc(100% + 1rem)"
-                id="profile__nav">
-                <ul class="flex flex-col gap-2">
-                    <li class="">
-                        <a href="/profile">Profile</a>
-                    </li>
-                </ul>
-                <form action="/logout" method="POST" class="mt-3 pt-3 border-t border-slate-300">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="flex gap-2 items-center">
-                        Sign Out
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-4 h-4">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
-            <div class="flex gap-2 items-center cursor-pointer" id="profile__btn">
-                <div class="rounded-lg border border-slate-400 w-12 h-12 flex items-center justify-center font-bold">
-                    {{ substr(Auth::user()->name, 0, 1) }}
-                </div>
-                <div class="text-sm">
-                    <p class="font-semibold">{{ Auth::user()->name }}</p>
-                    <p class="text-xs">{{ Auth::user()->email }}</p>
-                </div>
+            <div>
+                <a href="/profile" class="flex gap-2 items-center cursor-pointer">
+                    <div>
+                        @if (Auth::user()->avatar_url)
+                            <img src="{{ Auth::user()->avatar_url }}" class="w-12 h-12 rounded">
+                        @else
+                            <div
+                                class="rounded border border-slate-400 w-12 h-12 flex items-center justify-center font-bold">
+                                {{ substr(Auth::user()->name, 0, 1) }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="text-sm">
+                        <p class="font-semibold">{{ Auth::user()->name }}</p>
+                        <p class="text-xs">{{ Auth::user()->email }}</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

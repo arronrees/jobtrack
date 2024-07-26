@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
@@ -28,6 +29,7 @@ class ProfileController extends Controller
         $userAttributes = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'avatar' => ['nullable', File::types(['png', 'jpg', 'webp'])->max(5 * 1024)]
         ]);
 
         $passwordAttributes = $request->validate([
@@ -44,6 +46,14 @@ class ProfileController extends Controller
             $user->update([
                 'name' => $userAttributes['name'],
                 'email' => $userAttributes['email'],
+            ]);
+        }
+
+        if ($request->avatar && $userAttributes['avatar']) {
+            $avatar_url = $request->avatar->store('avatars');
+
+            $user->update([
+                'avatar_url' => $avatar_url,
             ]);
         }
 

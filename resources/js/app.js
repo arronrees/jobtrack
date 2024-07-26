@@ -13,18 +13,6 @@ function mobileNav() {
     });
 }
 
-function profileToggle() {
-    const btn = document.querySelector("#profile__btn");
-    const profileNav = document.querySelector("#profile__nav");
-
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        profileNav.classList.toggle("profile--open");
-    });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     mobileNav();
-    profileToggle();
 });

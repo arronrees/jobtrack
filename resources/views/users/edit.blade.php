@@ -18,7 +18,8 @@
 
         <section>
 
-            <form method="POST" action="/users/{{ $user->id }}" class="flex flex-col gap-6">
+            <form method="POST" action="/users/{{ $user->id }}" class="flex flex-col gap-6"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -68,6 +69,24 @@
                             @endforeach
                         </x-forms.select>
                         @error('status')
+                            <x-forms.error>
+                                {{ $message }}
+                            </x-forms.error>
+                        @enderror
+                    </x-forms.row>
+                </div>
+
+                <hr>
+
+                <div class="grid md:grid-cols-[1fr,1fr] gap-2">
+                    <x-forms.row>
+                        <x-forms.label class="opacity-60" for="avatar" text="Avatar" />
+                        <p class="font-light opacity-60 text-xs">Accepted file types: jpg, png, webp</p>
+                        <p class="font-light opacity-60 text-xs">Max file size: 5mb</p>
+                    </x-forms.row>
+                    <x-forms.row>
+                        <x-forms.input-file name="avatar" id="avatar" />
+                        @error('avatar')
                             <x-forms.error>
                                 {{ $message }}
                             </x-forms.error>

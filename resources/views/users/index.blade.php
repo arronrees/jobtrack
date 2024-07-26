@@ -23,7 +23,12 @@
                             <x-table.td>
                                 <x-table.row-link href="/users/{{ $user->id }}/edit" />
                                 <span class="flex items-center gap-3">
-                                    <img src="{{ $user->avatar_url }}" class="w-6 h-6 rounded">
+                                    @if ($user->avatar_url)
+                                        <img src="{{ $user->avatar_url }}" class="w-6 h-6 rounded">
+                                    @else
+                                        <span
+                                            class="font-semibold rounded border border-slate-300 w-6 h-6 flex items-center justify-center">{{ substr($user->name, 0, 1) }}</span>
+                                    @endif
                                     {{ $user->name }}
                                 </span>
                             </x-table.td>

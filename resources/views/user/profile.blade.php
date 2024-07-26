@@ -4,11 +4,18 @@
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
             <h1 class="text-xl font-semibold">Profile</h1>
+            <form action="/logout" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn--delete">
+                    Sign Out
+                </button>
+            </form>
         </div>
 
         <section>
 
-            <form method="POST" action="/profile" class="flex flex-col gap-6">
+            <form method="POST" action="/profile" class="flex flex-col gap-6" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -36,6 +43,22 @@
                         <x-forms.input-text name="email" type="email" id="email" :required="true"
                             :value="$user->email" />
                         @error('email')
+                            <x-forms.error>
+                                {{ $message }}
+                            </x-forms.error>
+                        @enderror
+                    </x-forms.row>
+                </div>
+
+                <hr>
+
+                <div class="grid md:grid-cols-[1fr,1fr] gap-2">
+                    <div>
+                        <x-forms.label class="opacity-60" for="avatar" text="Avatar" />
+                    </div>
+                    <x-forms.row>
+                        <x-forms.input-file name="avatar" id="avatar" />
+                        @error('avatar')
                             <x-forms.error>
                                 {{ $message }}
                             </x-forms.error>
