@@ -24,7 +24,7 @@
                             <x-table.td>
                                 <x-table.row-link href="/clients/{{ $client->id }}" />
                                 <span class="flex items-center gap-3">
-                                    <img src="{{ $client->logo }}" class="w-6 h-6 rounded">
+                                    <img src="/{{ $client->logo }}" class="w-6 h-6 rounded">
                                     {{ $client->name }}
                                 </span>
                             </x-table.td>

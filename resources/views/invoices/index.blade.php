@@ -56,7 +56,7 @@
                             <x-table.td>
                                 <x-table.row-link href="/invoices/{{ $invoice->id }}" />
                                 <span class="flex items-center gap-3 text-xs">
-                                    <img src="{{ $invoice->job->client->logo }}" class="w-6 h-6 rounded">
+                                    <img src="/{{ $invoice->job->client->logo }}" class="w-6 h-6 rounded">
                                     <span class="opacity-60">
                                         {{ $invoice->job->client->name }}
                                     </span>

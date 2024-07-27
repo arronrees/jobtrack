@@ -39,7 +39,7 @@
             <div class="grid grid-cols-[10rem,1fr]">
                 <div class="opacity-80 font-medium">Client</div>
                 <div class="flex gap-2 items-center">
-                    <img src="{{ $invoice->job->client->logo }}" class="w-6 h-6 rounded">
+                    <img src="/{{ $invoice->job->client->logo }}" class="w-6 h-6 rounded">
                     <a href="/clients/{{ $invoice->job->client->id }}">{{ $invoice->job->client->name }}</a>
                 </div>
             </div>

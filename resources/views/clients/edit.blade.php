@@ -18,7 +18,8 @@
 
         <div>
 
-            <form method="POST" action="/clients/{{ $client->id }}" class="flex flex-col gap-6">
+            <form method="POST" action="/clients/{{ $client->id }}" class="flex flex-col gap-6"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -110,9 +111,11 @@
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
                         <x-forms.label class="opacity-60" for="logo" text="Logo" />
+                        <p class="font-light opacity-60 text-xs">Accepted file types: jpg, png, webp</p>
+                        <p class="font-light opacity-60 text-xs">Max file size: 5mb</p>
                     </div>
                     <x-forms.row>
-                        <x-forms.input-text name="logo" id="logo" />
+                        <x-forms.input-file name="logo" id="logo" />
                         @error('logo')
                             <x-forms.error>
                                 {{ $message }}

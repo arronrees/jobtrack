@@ -14,7 +14,7 @@
 
         <div class="flex items-center gap-4">
             <div>
-                <img src="{{ $client->logo }}" class="w-40 h-24 object-cover object-center rounded-lg" alt="">
+                <img src="/{{ $client->logo }}" class="w-40 h-24 object-cover object-center rounded-lg" alt="">
             </div>
             <div>
                 <h1 class="text-2xl font-semibold mb-1">{{ $client->name }}</h1>

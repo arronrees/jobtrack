@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class ClientController extends Controller
 {
@@ -37,10 +38,16 @@ class ClientController extends Controller
             'contact_email' => ['required', 'email', 'max:255'],
             'notes' => ['nullable'],
             'website' => ['nullable', 'url'],
-            'logo' => ['nullable'],
+            'logo' => ['nullable',  File::types(['png', 'jpg', 'webp'])->max(5 * 1024)],
         ]);
 
-        $client = Client::create($validatedAttributes);
+        $logo = '';
+
+        if ($request->logo && $validatedAttributes['logo']) {
+            $logo = $request->logo->store('client_logos');
+        }
+
+        $client = Client::create([...$validatedAttributes, 'logo' => $logo]);
 
         return redirect("/clients/{$client->id}");
     }
@@ -59,10 +66,25 @@ class ClientController extends Controller
             'contact_email' => ['required', 'email', 'max:255'],
             'notes' => ['nullable'],
             'website' => ['nullable', 'url'],
-            'logo' => ['nullable'],
+            'logo' => ['nullable',  File::types(['png', 'jpg', 'webp'])->max(5 * 1024)],
         ]);
 
-        $client->update($validatedAttributes);
+        $client->update([
+            'name' => $validatedAttributes['name'],
+            'contact_name' => $validatedAttributes['contact_name'],
+            'contact_telephone' => $validatedAttributes['contact_telephone'],
+            'contact_email' => $validatedAttributes['contact_email'],
+            'notes' => $validatedAttributes['notes'],
+            'website' => $validatedAttributes['website'],
+        ]);
+
+        if ($request->logo && $validatedAttributes['logo']) {
+            $logo = $request->logo->store('client_logos');
+
+            $client->update([
+                'logo' => $logo,
+            ]);
+        }
 
         return redirect("/clients/{$client->id}");
     }
