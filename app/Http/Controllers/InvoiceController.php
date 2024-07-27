@@ -87,4 +87,35 @@ class InvoiceController extends Controller
 
         return redirect("/invoices/{$invoice->id}");
     }
+
+    public function edit(Invoice $invoice)
+    {
+        $jobs = Job::all(['name', 'id']);
+
+        $statuses = InvoiceStatus::cases();
+
+        return view('invoices.edit', [
+            'jobs' => $jobs,
+            'statuses' => $statuses,
+            'invoice' => $invoice
+        ]);
+    }
+
+    public function update(Request $request, Invoice $invoice)
+    {
+        $validatedAttributes = $request->validate([
+            'name' => ['required', 'max:255'],
+            'status' => ['required', Rule::enum(InvoiceStatus::class)],
+            'notes' => ['nullable'],
+            'private_notes' => ['nullable'],
+            'amount' => ['integer'],
+            'invoice_date' => ['date', 'nullable'],
+            'due_date' => ['date', 'nullable'],
+            'job_id' => ['required', 'exists:jobs,id'],
+        ]);
+
+        $invoice->update($validatedAttributes);
+
+        return redirect("/invoices/{$invoice->id}");
+    }
 }
