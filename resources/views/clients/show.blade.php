@@ -25,6 +25,43 @@
             </div>
         </div>
 
+        <div class="mt-16 text-sm flex flex-col gap-3 font-light">
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Contact Name</div>
+                <div class=" flex gap-2 items-center">
+                    {{ $client->contact_name }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Contact Telephone</div>
+                <div class=" flex gap-2 items-center">
+                    {{ $client->contact_telephone }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Contact Email</div>
+                <div class=" flex gap-2 items-center">
+                    {{ $client->contact_email }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Website</div>
+                <div class=" flex gap-2 items-center">
+                    {{ $client->website }}
+                </div>
+            </div>
+            <hr>
+            <div class="grid grid-cols-[10rem,1fr]">
+                <div class="opacity-80 font-medium">Notes</div>
+                <div class=" flex gap-2 items-center">
+                    {{ $client->notes }}
+                </div>
+            </div>
+        </div>
+
         <div class="mt-16">
             <h2 class="font-semibold text-lg mb-4 pb-1 border-b-2 border-slate-100">Jobs</h2>
             <x-table.table>

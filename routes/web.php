@@ -32,6 +32,8 @@ Route::controller(ClientController::class)->middleware('auth')->group(function (
     Route::get('/clients/create', 'create');
     Route::post('/clients', 'store');
     Route::get('/clients/{client}', 'show');
+    Route::get('/clients/{client}/edit', 'edit');
+    Route::put('/clients/{client}', 'update');
 });
 
 Route::controller(JobController::class)->middleware('auth')->group(function () {

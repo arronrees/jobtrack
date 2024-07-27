@@ -44,4 +44,26 @@ class ClientController extends Controller
 
         return redirect("/clients/{$client->id}");
     }
+
+    public function edit(Client $client)
+    {
+        return view('clients.edit', ['client' => $client]);
+    }
+
+    public function update(Request $request, Client $client)
+    {
+        $validatedAttributes = $request->validate([
+            'name' => ['required', 'max:255'],
+            'contact_name' => ['required', 'max:255'],
+            'contact_telephone' => ['required', 'max:255'],
+            'contact_email' => ['required', 'email', 'max:255'],
+            'notes' => ['nullable'],
+            'website' => ['nullable', 'url'],
+            'logo' => ['nullable'],
+        ]);
+
+        $client->update($validatedAttributes);
+
+        return redirect("/clients/{$client->id}");
+    }
 }

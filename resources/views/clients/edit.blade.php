@@ -18,15 +18,16 @@
 
         <div>
 
-            <form method="POST" action="/clients" class="flex flex-col gap-6">
+            <form method="POST" action="/clients/{{ $client->id }}" class="flex flex-col gap-6">
                 @csrf
+                @method('PUT')
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
                         <x-forms.label class="opacity-60" for="name" text="Client name" />
                     </div>
                     <x-forms.row>
-                        <x-forms.input-text name="name" id="name" :required="true" :value="old('name')" />
+                        <x-forms.input-text name="name" id="name" :required="true" :value="$client->name" />
                         @error('name')
                             <x-forms.error>
                                 {{ $message }}
@@ -44,7 +45,7 @@
                     <div class="flex flex-col gap-2">
                         <x-forms.row>
                             <x-forms.input-text name="contact_name" id="contact_name" :required="true"
-                                placeholder="Contact Name" :value="old('contact_name')" />
+                                placeholder="Contact Name" :value="$client->contact_name" />
                             @error('contact_name')
                                 <x-forms.error>
                                     {{ $message }}
@@ -53,7 +54,7 @@
                         </x-forms.row>
                         <x-forms.row>
                             <x-forms.input-text name="contact_telephone" id="contact_telephone" :required="true"
-                                placeholder="Telephone" :value="old('contact_telephone')" />
+                                placeholder="Telephone" :value="$client->contact_telephone" />
                             @error('contact_telephone')
                                 <x-forms.error>
                                     {{ $message }}
@@ -62,7 +63,7 @@
                         </x-forms.row>
                         <x-forms.row>
                             <x-forms.input-text name="contact_email" id="contact_email" :required="true"
-                                placeholder="Email" :value="old('contact_email')" />
+                                placeholder="Email" :value="$client->contact_email" />
                             @error('contact_email')
                                 <x-forms.error>
                                     {{ $message }}
@@ -79,7 +80,7 @@
                         <x-forms.label class="opacity-60" for="notes" text="Notes" />
                     </div>
                     <x-forms.row>
-                        <x-forms.input-textarea name="notes" id="notes" :value="old('notes')" />
+                        <x-forms.input-textarea name="notes" id="notes" :value="$client->notes" />
                         @error('notes')
                             <x-forms.error>
                                 {{ $message }}
@@ -95,7 +96,7 @@
                         <x-forms.label class="opacity-60" for="website" text="Website" />
                     </div>
                     <x-forms.row>
-                        <x-forms.input-text name="website" id="website" :value="old('website')" />
+                        <x-forms.input-text name="website" id="website" :value="$client->website" />
                         @error('website')
                             <x-forms.error>
                                 {{ $message }}
