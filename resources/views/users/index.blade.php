@@ -38,7 +38,7 @@
                             </x-table.td>
                             <x-table.td>
                                 <x-table.row-link href="/users/{{ $user->id }}" />
-                                {{ $user->role }}
+                                <x-ui.pill type="user-role" :user_role="$user->role">{{ $user->role }}</x-ui.pill>
                             </x-table.td>
                         </x-table.tr>
                     @endforeach

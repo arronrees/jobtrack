@@ -18,12 +18,12 @@
 
         <section>
 
-            <form method="POST" action="/users" class="flex flex-col gap-6">
+            <form method="POST" action="/users" class="flex flex-col gap-6" enctype="multipart/form-data">
                 @csrf
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
-                        <x-forms.label class="opacity-60" for="name" text="Name" />
+                        <x-forms.label class="opacity-60" for="name" text="Name" :value="old('name')" />
                     </div>
                     <x-forms.row>
                         <x-forms.input-text name="name" id="name" :required="true" />
@@ -42,7 +42,8 @@
                         <x-forms.label class="opacity-60" for="email" text="Email" />
                     </div>
                     <x-forms.row>
-                        <x-forms.input-text name="email" type="email" id="email" :required="true" />
+                        <x-forms.input-text name="email" type="email" id="email" :required="true"
+                            :value="old('email')" />
                         @error('email')
                             <x-forms.error>
                                 {{ $message }}
@@ -61,11 +62,30 @@
                         <x-forms.select name="role" id="role" :required="true">
                             <option disabled selected value="">Select role</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role }}">
+                                <option value="{{ $role }}"
+                                    {{ old('role') === $role->value ? 'selected' : '' }}>
                                     {{ $role }}</option>
                             @endforeach
                         </x-forms.select>
                         @error('status')
+                            <x-forms.error>
+                                {{ $message }}
+                            </x-forms.error>
+                        @enderror
+                    </x-forms.row>
+                </div>
+
+                <hr>
+
+                <div class="grid md:grid-cols-[1fr,1fr] gap-2">
+                    <x-forms.row>
+                        <x-forms.label class="opacity-60" for="avatar" text="Avatar" />
+                        <p class="font-light opacity-60 text-xs">Accepted file types: jpg, png, webp</p>
+                        <p class="font-light opacity-60 text-xs">Max file size: 5mb</p>
+                    </x-forms.row>
+                    <x-forms.row>
+                        <x-forms.input-file name="avatar" id="avatar" />
+                        @error('avatar')
                             <x-forms.error>
                                 {{ $message }}
                             </x-forms.error>

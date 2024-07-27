@@ -43,11 +43,16 @@ class UserController extends Controller
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', Password::min(6)->letters(), 'confirmed'],
             'role' => ['required', Rule::enum(UserRole::class)],
+            'avatar' => ['nullable', File::types(['png', 'jpg', 'webp'])->max(5 * 1024)]
         ]);
 
-        $rand = rand(0, 100000);
+        $avatar_url = '';
 
-        User::create([...$validatedAttributes, 'avatar_url' => "http://picsum.photos/seed/$rand/600"]);
+        if ($request->avatar && $validatedAttributes['avatar']) {
+            $avatar_url = $request->avatar->store('avatars');
+        }
+
+        User::create([...$validatedAttributes, 'avatar_url' => $avatar_url]);
 
         return redirect('/users');
     }
