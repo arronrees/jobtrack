@@ -1,4 +1,4 @@
-@props(['type' => '', 'job_status' => '', 'job_type' => '', 'invoice_status' => ''])
+@props(['type' => '', 'job_status' => '', 'job_type' => '', 'invoice_status' => '', 'user_role' => ''])
 
 @php
     $classes = '';
@@ -33,6 +33,20 @@
             } elseif ($invoice_status === 'Invoiced') {
                 $classes .= 'bg-indigo-100 text-indigo-800';
             } elseif ($invoice_status === 'Paid') {
+                $classes .= 'bg-green-100 text-green-800';
+            }
+            break;
+
+        case 'user-role':
+            if ($user_role === 'Superadmin') {
+                $classes .= 'bg-indigo-100 text-indigo-800';
+            } elseif ($user_role === 'Admin') {
+                $classes .= 'bg-blue-100 text-blue-800';
+            } elseif ($user_role === 'Editor') {
+                $classes .= 'bg-amber-100 text-amber-800';
+            } elseif ($user_role === 'Author') {
+                $classes .= 'bg-violet-100 text-violet-800';
+            } elseif ($user_role === 'Viewer') {
                 $classes .= 'bg-green-100 text-green-800';
             }
             break;

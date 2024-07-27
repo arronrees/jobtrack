@@ -21,10 +21,10 @@
                     @foreach ($users as $user)
                         <x-table.tr>
                             <x-table.td>
-                                <x-table.row-link href="/users/{{ $user->id }}/edit" />
+                                <x-table.row-link href="/users/{{ $user->id }}" />
                                 <span class="flex items-center gap-3">
                                     @if ($user->avatar_url)
-                                        <img src="{{ $user->avatar_url }}" class="w-6 h-6 rounded">
+                                        <img src="/{{ $user->avatar_url }}" class="w-6 h-6 rounded">
                                     @else
                                         <span
                                             class="font-semibold rounded border border-slate-300 w-6 h-6 flex items-center justify-center">{{ substr($user->name, 0, 1) }}</span>
@@ -33,11 +33,11 @@
                                 </span>
                             </x-table.td>
                             <x-table.td>
-                                <x-table.row-link href="/users/{{ $user->id }}/edit" />
+                                <x-table.row-link href="/users/{{ $user->id }}" />
                                 {{ $user->email }}
                             </x-table.td>
                             <x-table.td>
-                                <x-table.row-link href="/users/{{ $user->id }}/edit" />
+                                <x-table.row-link href="/users/{{ $user->id }}" />
                                 {{ $user->role }}
                             </x-table.td>
                         </x-table.tr>

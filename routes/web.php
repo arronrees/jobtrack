@@ -59,6 +59,7 @@ Route::controller(UserController::class)->middleware('auth')->group(function () 
     Route::get('/users', 'index');
     Route::get('/users/create', 'create');
     Route::post('/users', 'store');
+    Route::get('/users/{user}', 'show');
     Route::get('/users/{user}/edit', 'edit');
     Route::put('/users/{user}', 'update');
 });

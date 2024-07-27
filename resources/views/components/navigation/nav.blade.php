@@ -72,7 +72,7 @@
                 <a href="/profile" class="flex gap-2 items-center cursor-pointer">
                     <div>
                         @if (Auth::user()->avatar_url)
-                            <img src="{{ Auth::user()->avatar_url }}" class="w-12 h-12 rounded">
+                            <img src="/{{ Auth::user()->avatar_url }}" class="w-12 h-12 rounded">
                         @else
                             <div
                                 class="rounded border border-slate-400 w-12 h-12 flex items-center justify-center font-bold">

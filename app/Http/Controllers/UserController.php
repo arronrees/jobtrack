@@ -19,6 +19,16 @@ class UserController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
+    public function show(User $user)
+    {
+        $user->load(['jobs' => function ($query) {
+            $query->with('client');
+        }]);
+
+        return view('users.show', ['user' => $user]);
+    }
+
+
     public function create()
     {
         $roles = UserRole::cases();
@@ -85,6 +95,6 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect('/users');
+        return redirect("/users/$user->id");
     }
 }
