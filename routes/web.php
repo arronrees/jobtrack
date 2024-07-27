@@ -40,6 +40,8 @@ Route::controller(JobController::class)->middleware('auth')->group(function () {
     Route::get('/jobs/create', 'create');
     Route::post('/jobs', 'store');
     Route::get('/jobs/{job}', 'show');
+    Route::get('/jobs/{job}/edit', 'edit');
+    Route::put('/jobs/{job}', 'update');
 });
 
 Route::controller(InvoiceController::class)->middleware('auth')->group(function () {

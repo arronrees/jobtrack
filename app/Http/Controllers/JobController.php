@@ -90,7 +90,6 @@ class JobController extends Controller
         ]);
     }
 
-
     public function store(Request $request)
     {
         $validatedAttributes = $request->validate([
@@ -105,6 +104,42 @@ class JobController extends Controller
         ]);
 
         $job = Job::create($validatedAttributes);
+
+        return redirect("/jobs/{$job->id}");
+    }
+
+    public function edit(Job $job)
+    {
+        $users = User::all(['name', 'id']);
+
+        $clients = Client::all(['name', 'id']);
+
+        $types = JobType::cases();
+        $statuses = JobStatus::cases();
+
+        return view('jobs.edit', [
+            'users' => $users,
+            'clients' => $clients,
+            'types' => $types,
+            'statuses' => $statuses,
+            'job' => $job
+        ]);
+    }
+
+    public function update(Request $request, Job $job)
+    {
+        $validatedAttributes = $request->validate([
+            'name' => ['required', 'max:255'],
+            'type' => ['required', Rule::enum(JobType::class)],
+            'status' => ['required', Rule::enum(JobStatus::class)],
+            'notes' => ['nullable'],
+            'cost' => ['integer'],
+            'due_date' => ['date', 'nullable'],
+            'user_id' => ['required', 'exists:users,id'],
+            'client_id' => ['required', 'exists:clients,id'],
+        ]);
+
+        $job->update($validatedAttributes);
 
         return redirect("/jobs/{$job->id}");
     }
