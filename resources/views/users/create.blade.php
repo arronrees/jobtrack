@@ -23,10 +23,10 @@
 
                 <div class="grid md:grid-cols-[1fr,1fr] gap-2">
                     <div>
-                        <x-forms.label class="opacity-60" for="name" text="Name" :value="old('name')" />
+                        <x-forms.label class="opacity-60" for="name" text="Name" />
                     </div>
                     <x-forms.row>
-                        <x-forms.input-text name="name" id="name" :required="true" />
+                        <x-forms.input-text name="name" id="name" :required="true" :value="old('name')" />
                         @error('name')
                             <x-forms.error>
                                 {{ $message }}
@@ -67,7 +67,7 @@
                                     {{ $role }}</option>
                             @endforeach
                         </x-forms.select>
-                        @error('status')
+                        @error('role')
                             <x-forms.error>
                                 {{ $message }}
                             </x-forms.error>

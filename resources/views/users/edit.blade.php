@@ -68,7 +68,7 @@
                                     {{ $role->value }}</option>
                             @endforeach
                         </x-forms.select>
-                        @error('status')
+                        @error('role')
                             <x-forms.error>
                                 {{ $message }}
                             </x-forms.error>

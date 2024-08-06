@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -38,6 +39,12 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        if (Auth::user()->role === 'Admin') {
+            if ($request->role === 'Superadmin') {
+                return redirect()->back()->withErrors(['role' => 'You do not have permssion to assign a Superadmin']);
+            }
+        }
+
         $validatedAttributes = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
@@ -66,6 +73,12 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        if (Auth::user()->role === 'Admin') {
+            if ($request->role === 'Superadmin') {
+                return redirect()->back()->withErrors(['role' => 'You do not have permssion to assign a Superadmin']);
+            }
+        }
+
         $userAttributes = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],

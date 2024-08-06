@@ -7,8 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -62,10 +61,10 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
 });
 
 Route::controller(UserController::class)->middleware('auth')->group(function () {
-    Route::get('/users', 'index');
-    Route::get('/users/create', 'create');
-    Route::post('/users', 'store');
-    Route::get('/users/{user}', 'show');
-    Route::get('/users/{user}/edit', 'edit');
-    Route::put('/users/{user}', 'update');
+    Route::get('/users', 'index')->can('viewAny', User::class);
+    Route::get('/users/create', 'create')->can('create', User::class);
+    Route::post('/users', 'store')->can('create', User::class);
+    Route::get('/users/{user}', 'show')->can('view', 'user');
+    Route::get('/users/{user}/edit', 'edit')->can('update', 'user');
+    Route::put('/users/{user}', 'update')->can('update', 'user');
 });

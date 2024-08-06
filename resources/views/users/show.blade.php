@@ -19,12 +19,14 @@
             </div>
             <div>
                 <h1 class="text-2xl font-semibold mb-1">{{ $user->name }}</h1>
-                <p class="opacity-70">{{ $user->email }}</p>
+                <p class="opacity-70 mb-1">{{ $user->email }}</p>
                 <x-ui.pill type="user-role" :user_role="$user->role">{{ $user->role }}</x-ui.pill>
             </div>
-            <div class="flex gap-2 flex-col ml-auto">
-                <a href="/users/{{ $user->id }}/edit" class="btn--edit">Edit</a>
-            </div>
+            @can('update', $user)
+                <div class="flex gap-2 flex-col ml-auto">
+                    <a href="/users/{{ $user->id }}/edit" class="btn--edit">Edit</a>
+                </div>
+            @endcan
         </div>
 
         <div class="mt-16">
