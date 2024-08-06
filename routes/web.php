@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use App\Models\Client;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +28,12 @@ Route::delete('/logout', [SessionController::class, 'destroy']);
 Route::view('/dashboard', 'dashboard')->middleware('auth');
 
 Route::controller(ClientController::class)->middleware('auth')->group(function () {
-    Route::get('/clients', 'index');
-    Route::get('/clients/create', 'create');
-    Route::post('/clients', 'store');
-    Route::get('/clients/{client}', 'show');
-    Route::get('/clients/{client}/edit', 'edit');
-    Route::put('/clients/{client}', 'update');
+    Route::get('/clients', 'index')->can('viewAny', Client::class);
+    Route::get('/clients/create', 'create')->can('create', Client::class);
+    Route::post('/clients', 'store')->can('create', Client::class);
+    Route::get('/clients/{client}', 'show')->can('view', Client::class);
+    Route::get('/clients/{client}/edit', 'edit')->can('update', Client::class);
+    Route::put('/clients/{client}', 'update')->can('update', Client::class);
 });
 
 Route::controller(JobController::class)->middleware('auth')->group(function () {
