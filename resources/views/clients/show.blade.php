@@ -20,9 +20,11 @@
                 <h1 class="text-2xl font-semibold mb-1">{{ $client->name }}</h1>
                 <p class="opacity-70">32 London Bridge Street, London, SW19</p>
             </div>
-            <div class="flex gap-2 flex-col ml-auto">
-                <a href="/clients/{{ $client->id }}/edit" class="btn--edit">Edit</a>
-            </div>
+            @can('update', $client)
+                <div class="flex gap-2 flex-col ml-auto">
+                    <a href="/clients/{{ $client->id }}/edit" class="btn--edit">Edit</a>
+                </div>
+            @endcan
         </div>
 
         <div class="mt-16 text-sm flex flex-col gap-3 font-light">
