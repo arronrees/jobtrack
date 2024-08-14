@@ -20,9 +20,11 @@
                     <x-ui.pill type="job-type" :job_type="$job->type">{{ $job->type }}</x-ui.pill>
                 </div>
             </div>
-            <div class="flex gap-2 flex-col ml-auto">
-                <a href="/jobs/{{ $job->id }}/edit" class="btn--edit">Edit</a>
-            </div>
+            @can('update', $job)
+                <div class="flex gap-2 flex-col ml-auto">
+                    <a href="/jobs/{{ $job->id }}/edit" class="btn--edit">Edit</a>
+                </div>
+            @endcan
         </div>
 
         <div class="mt-16 text-sm flex flex-col gap-3 font-light">

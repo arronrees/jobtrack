@@ -9,8 +9,10 @@
             @else
                 <a href="/jobs/archive" class="btn--outline ml-auto">Archived Jobs</a>
             @endif
-            <a href="/jobs/create" class="btn--add">Add
-                Job</a>
+            @can('create', App\Models\Job::class)
+                <a href="/jobs/create" class="btn--add">Add
+                    Job</a>
+            @endcan
         </div>
 
         <div class="flex gap-4 mb-6">

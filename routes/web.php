@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use App\Models\Client;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -31,19 +32,19 @@ Route::controller(ClientController::class)->middleware('auth')->group(function (
     Route::get('/clients', 'index')->can('viewAny', Client::class);
     Route::get('/clients/create', 'create')->can('create', Client::class);
     Route::post('/clients', 'store')->can('create', Client::class);
-    Route::get('/clients/{client}', 'show')->can('view', Client::class);
-    Route::get('/clients/{client}/edit', 'edit')->can('update', Client::class);
-    Route::put('/clients/{client}', 'update')->can('update', Client::class);
+    Route::get('/clients/{client}', 'show')->can('view', 'client');
+    Route::get('/clients/{client}/edit', 'edit')->can('update', 'client');
+    Route::put('/clients/{client}', 'update')->can('update', 'client');
 });
 
 Route::controller(JobController::class)->middleware('auth')->group(function () {
-    Route::get('/jobs', 'index');
-    Route::get('/jobs/archive', 'archive');
-    Route::get('/jobs/create', 'create');
-    Route::post('/jobs', 'store');
-    Route::get('/jobs/{job}', 'show');
-    Route::get('/jobs/{job}/edit', 'edit');
-    Route::put('/jobs/{job}', 'update');
+    Route::get('/jobs', 'index')->can('viewAny', Job::class);
+    Route::get('/jobs/archive', 'archive')->can('viewAny', Job::class);
+    Route::get('/jobs/create', 'create')->can('create', Job::class);
+    Route::post('/jobs', 'store')->can('create', Job::class);
+    Route::get('/jobs/{job}', 'show')->can('view', 'job');
+    Route::get('/jobs/{job}/edit', 'edit')->can('update', 'job');
+    Route::put('/jobs/{job}', 'update')->can('update', 'job');
 });
 
 Route::controller(InvoiceController::class)->middleware('auth')->group(function () {
