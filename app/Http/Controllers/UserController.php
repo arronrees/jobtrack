@@ -40,6 +40,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         if (Auth::user()->role === 'Admin') {
+            // admin cant create user with a higher level
             if ($request->role === 'Superadmin') {
                 return redirect()->back()->withErrors(['role' => 'You do not have permssion to assign a Superadmin']);
             }

@@ -43,6 +43,7 @@ class UserPolicy
         }
 
         if ($user->role === 'Admin') {
+            // admin cant update user to a higher level
             if ($model->role !== 'Superadmin') {
                 return true;
             } else {
