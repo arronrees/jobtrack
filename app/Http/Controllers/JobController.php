@@ -14,11 +14,11 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
-        $jobs = Job::query()->with(['client', 'user'])->join('users', 'jobs.user_id', '=', 'users.id');
+        $jobs = Job::query()->with(['client', 'user']);
 
         $validStatuses = ['In Progress', 'Complete', 'To Start'];
         $validTypes = ['Website Update', 'Website Build', 'Logo Design', 'Graphic Design', 'Print'];
-        $validSortBys = ['users.name', 'name', 'type', 'status', 'cost', 'due_date'];
+        $validSortBys = ['name', 'type', 'status', 'cost', 'due_date'];
         $validSorts = ['asc', 'desc'];
 
         $status = $request->query('status');
@@ -56,16 +56,24 @@ class JobController extends Controller
     {
         $jobs = Job::query()->with(['client', 'user']);
 
+        $validStatuses = ['In Progress', 'Complete', 'To Start'];
+        $validTypes = ['Website Update', 'Website Build', 'Logo Design', 'Graphic Design', 'Print'];
+        $validSortBys = ['name', 'type', 'status', 'cost', 'due_date'];
+        $validSorts = ['asc', 'desc'];
+
         $status = $request->query('status');
         $type = $request->query('type');
         $sort = $request->query('sort');
         $sortBy = $request->query('sort_by');
 
-        if ($status) {
+        if ($status && in_array($status, $validStatuses)) {
             $jobs->where('status', '=', $status);
         }
-        if ($type) {
+        if ($type && in_array($type, $validTypes)) {
             $jobs->where('type', '=', $type);
+        }
+        if ($sort && in_array($sort, $validSorts) && $sortBy && in_array($sortBy, $validSortBys)) {
+            $jobs->orderBy($sortBy, $sort);
         }
 
         $jobs = $jobs->where('archived', '=', true)->paginate(40)->appends($request->all());

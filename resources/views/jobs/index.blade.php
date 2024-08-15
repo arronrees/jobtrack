@@ -20,7 +20,7 @@
                 <p class="text-xs font-medium opacity-60">Filter By Status</p>
                 <div class="flex gap-2 flex-wrap">
                     @foreach ($statuses as $status)
-                        <a href="{{ url()->current() }}?status={{ $status->value }}&type={{ $current_type }}"
+                        <a href="{{ url()->current() }}?status={{ $status->value }}&type={{ $current_type }}&sort={{ $current_sort }}&sort_by={{ $current_sort_by }}"
                             class="text-xs rounded-full px-2 py-1 border border-slate-200 transition hover:bg-slate-200 {{ $current_status === $status->value ? 'bg-slate-200' : '' }}">{{ $status->value }}</a>
                     @endforeach
                 </div>
@@ -33,7 +33,7 @@
                 <p class="text-xs font-medium opacity-60">Filter By Type</p>
                 <div class="flex gap-2 flex-wrap">
                     @foreach ($types as $type)
-                        <a href="{{ url()->current() }}?status={{ $current_status }}&type={{ $type->value }}"
+                        <a href="{{ url()->current() }}?status={{ $current_status }}&type={{ $type->value }}&sort={{ $current_sort }}&sort_by={{ $current_sort_by }}"
                             class="text-xs rounded-full px-2 py-1 border border-slate-200 transition hover:bg-slate-200 {{ $current_type === $type->value ? 'bg-slate-200' : '' }}">{{ $type->value }}</a>
                     @endforeach
                 </div>
@@ -48,20 +48,7 @@
             <x-table.table>
                 <x-table.thead>
                     <x-table.trh>
-                        <x-table.th>
-                            <a class="flex gap-2 items-center w-full h-full"
-                                href="{{ url()->current() }}?status={{ $current_status }}&type={{ $current_type }}&sort_by=users.name&sort={{ $current_sort_by === 'users.name' && $current_sort === 'asc' ? 'desc' : 'asc' }}">
-                                User
-                                @if ($current_sort_by === 'users.name')
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor"
-                                        class="w-3 h-3 {{ $current_sort === 'desc' ? 'rotate-180' : '' }}">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                    </svg>
-                                @endif
-                            </a>
-                        </x-table.th>
+                        <x-table.th>User</x-table.th>
                         <x-table.th>
                             <a class="flex gap-2 items-center w-full h-full"
                                 href="{{ url()->current() }}?status={{ $current_status }}&type={{ $current_type }}&sort_by=name&sort={{ $current_sort_by === 'name' && $current_sort === 'asc' ? 'desc' : 'asc' }}">

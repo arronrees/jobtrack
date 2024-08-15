@@ -37,17 +37,12 @@ class JobPolicy
      */
     public function update(User $user, Job $job): bool
     {
-        if ($user->role === 'Superadmin' || $user->role === 'Admin') {
+        if ($user->role === 'Superadmin' || $user->role === 'Admin' || $user->role === 'Editor') {
             return true;
         }
 
         // owners can update
         if ($user->id === $job->user_id) {
-            return true;
-        }
-
-        // editors can update authors and other editors jobs
-        if ($user->role === 'Editor' && ($job->user->role === 'Author' || $job->user->role === 'Editor')) {
             return true;
         }
 
