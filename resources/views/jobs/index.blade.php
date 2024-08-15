@@ -25,7 +25,7 @@
                     @endforeach
                 </div>
                 <div>
-                    <a href="{{ url()->current() }}?status=&type={{ $current_type }}"
+                    <a href="{{ url()->current() }}?status=&type={{ $current_type }}&sort={{ $current_sort }}&sort_by={{ $current_sort_by }}"
                         class="text-xs opacity-50 transition hover:opacity-70 border-b border-transparent hover:border-slate-500">Clear</a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     @endforeach
                 </div>
                 <div>
-                    <a href="{{ url()->current() }}?status={{ $current_status }}&type="
+                    <a href="{{ url()->current() }}?status={{ $current_status }}&type=&sort={{ $current_sort }}&sort_by={{ $current_sort_by }}"
                         class="text-xs opacity-50 transition hover:opacity-70 border-b border-transparent hover:border-slate-500">Clear</a>
                 </div>
             </div>
