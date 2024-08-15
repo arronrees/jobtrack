@@ -8,11 +8,23 @@ use Illuminate\Validation\Rules\File;
 
 class ClientController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::paginate(40);
+        $clients = Client::query();
 
-        return view('clients.index', ['clients' => $clients]);
+        $validSortBys = ['name', 'contact_name', 'contact_email'];
+        $validSorts = ['asc', 'desc'];
+
+        $sort = $request->query('sort');
+        $sortBy = $request->query('sort_by');
+
+        if ($sort && in_array($sort, $validSorts) && $sortBy && in_array($sortBy, $validSortBys)) {
+            $clients->orderBy($sortBy, $sort);
+        }
+
+        $clients = $clients->paginate(40);
+
+        return view('clients.index', ['clients' => $clients, 'current_sort' => $sort, 'current_sort_by' => $sortBy]);
     }
 
     public function show(Client $client)
