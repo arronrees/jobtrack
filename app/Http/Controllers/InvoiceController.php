@@ -16,17 +16,32 @@ class InvoiceController extends Controller
             $query->with(['client']);
         }]);
 
-        $status = $request->query('status');
+        $validStatuses = ['Ready To Invoice', 'Invoiced', 'Paid'];
+        $validSortBys = ['name', 'status', 'amount', 'invoice_date', 'due_date'];
+        $validSorts = ['asc', 'desc'];
 
-        if ($status) {
+        $status = $request->query('status');
+        $sort = $request->query('sort');
+        $sortBy = $request->query('sort_by');
+
+        if ($status && in_array($status, $validStatuses)) {
             $invoices->where('status', '=', $status);
+        }
+        if ($sort && in_array($sort, $validSorts) && $sortBy && in_array($sortBy, $validSortBys)) {
+            $invoices->orderBy($sortBy, $sort);
         }
 
         $invoices = $invoices->where('archived', '!=', true)->paginate(40)->appends($request->all());
 
         $statuses = InvoiceStatus::cases();
 
-        return view('invoices.index', ['invoices' => $invoices, 'statuses' => $statuses, 'current_status' => $status]);
+        return view('invoices.index', [
+            'invoices' => $invoices,
+            'statuses' => $statuses,
+            'current_status' => $status,
+            'current_sort' => $sort,
+            'current_sort_by' => $sortBy,
+        ]);
     }
 
     public function archive(Request $request)
@@ -35,17 +50,32 @@ class InvoiceController extends Controller
             $query->with(['client']);
         }]);
 
-        $status = $request->query('status');
+        $validStatuses = ['Ready To Invoice', 'Invoiced', 'Paid'];
+        $validSortBys = ['name', 'status', 'amount', 'invoice_date', 'due_date'];
+        $validSorts = ['asc', 'desc'];
 
-        if ($status) {
+        $status = $request->query('status');
+        $sort = $request->query('sort');
+        $sortBy = $request->query('sort_by');
+
+        if ($status && in_array($status, $validStatuses)) {
             $invoices->where('status', '=', $status);
+        }
+        if ($sort && in_array($sort, $validSorts) && $sortBy && in_array($sortBy, $validSortBys)) {
+            $invoices->orderBy($sortBy, $sort);
         }
 
         $invoices = $invoices->where('archived', '=', true)->paginate(40)->appends($request->all());
 
         $statuses = InvoiceStatus::cases();
 
-        return view('invoices.index', ['invoices' => $invoices, 'statuses' => $statuses, 'current_status' => $status]);
+        return view('invoices.index', [
+            'invoices' => $invoices,
+            'statuses' => $statuses,
+            'current_status' => $status,
+            'current_sort' => $sort,
+            'current_sort_by' => $sortBy,
+        ]);
     }
 
     public function show(Invoice $invoice)
