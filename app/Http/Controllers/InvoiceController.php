@@ -148,4 +148,15 @@ class InvoiceController extends Controller
 
         return redirect("/invoices/{$invoice->id}");
     }
+
+    public function delete(Request $request, Invoice $invoice)
+    {
+        if ($invoice->status !== 'Ready To Invoice') {
+            return redirect()->back()->withErrors(['delete' => 'You cannot delete an invoice that has been invoiced']);
+        }
+
+        $invoice->delete();
+
+        return redirect("/invoices");
+    }
 }

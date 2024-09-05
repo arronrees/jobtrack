@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use App\Models\Client;
+use App\Models\Invoice;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -48,13 +49,14 @@ Route::controller(JobController::class)->middleware('auth')->group(function () {
 });
 
 Route::controller(InvoiceController::class)->middleware('auth')->group(function () {
-    Route::get('/invoices', 'index');
-    Route::get('/invoices/archive', 'archive');
-    Route::get('/invoices/create', 'create');
-    Route::post('/invoices', 'store');
-    Route::get('/invoices/{invoice}', 'show');
-    Route::get('/invoices/{invoice}/edit', 'edit');
-    Route::put('/invoices/{invoice}', 'update');
+    Route::get('/invoices', 'index')->can('viewAny', Invoice::class);
+    Route::get('/invoices/archive', 'archive')->can('viewAny', Invoice::class);
+    Route::get('/invoices/create', 'create')->can('create', Invoice::class);
+    Route::post('/invoices', 'store')->can('create', Invoice::class);
+    Route::get('/invoices/{invoice}', 'show')->can('view', 'invoice');
+    Route::get('/invoices/{invoice}/edit', 'edit')->can('update', 'invoice');
+    Route::put('/invoices/{invoice}', 'update')->can('update', 'invoice');
+    Route::delete('/invoices/{invoice}', 'delete')->can('delete', 'invoice');
 });
 
 Route::controller(ProfileController::class)->middleware('auth')->group(function () {

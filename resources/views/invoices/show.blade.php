@@ -12,6 +12,14 @@
             </a>
         </div>
 
+        @error('delete')
+            <div class="mb-6">
+                <x-forms.error>
+                    {{ $message }}
+                </x-forms.error>
+            </div>
+        @enderror
+
         <div class="flex items-center gap-4">
             <div>
                 <h1 class="text-2xl font-semibold mb-2">{{ $invoice->name }}</h1>
@@ -19,7 +27,18 @@
                     <x-ui.pill type="invoice-status" :invoice_status="$invoice->status">{{ $invoice->status }}</x-ui.pill>
                 </div>
             </div>
-            <div class="flex gap-2 flex-col ml-auto">
+            <div class="flex gap-2 ml-auto">
+                @can('delete', $invoice)
+                    @if ($invoice->status === 'Ready To Invoice')
+                        <div>
+                            <form action="/invoices/{{ $invoice->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn--delete">Delete Invoice</button>
+                            </form>
+                        </div>
+                    @endif
+                @endcan
                 <a href="/invoices/{{ $invoice->id }}/edit" class="btn--edit">Edit</a>
             </div>
         </div>
