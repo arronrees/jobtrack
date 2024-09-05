@@ -3,19 +3,12 @@
     <div class="p-6">
 
         <div class="flex gap-4 flex-wrap items-center justify-between mb-6">
-            <a href="/users" class="p-2 flex items-center gap-2 rounded">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-4 h-4 stroke-black">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-                Users
-            </a>
+            <x-navigation.back-btn href="/users" text="Users" />
         </div>
 
         <div class="flex items-center gap-4">
             <div>
-                <img src="/{{ $user->avatar_url }}" class="w-40 h-24 object-cover object-center rounded-lg"
-                    alt="">
+                <img src="/{{ $user->avatar_url }}" class="w-40 h-24 object-cover object-center rounded-lg" alt="">
             </div>
             <div>
                 <h1 class="text-2xl font-semibold mb-1">{{ $user->name }}</h1>
